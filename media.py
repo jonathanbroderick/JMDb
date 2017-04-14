@@ -1,3 +1,4 @@
+# Defining Movie class from which several movie instances will be created.
 class Movie():
     def __init__(self, title, storyline, img, trailer):
         self.title = title
