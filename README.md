@@ -5,7 +5,7 @@ Source code for a Movie Trailer website.
 This project was written by Jonathan Broderick in April 2017.
 
 This is a simple website where a user can view a list of movies and click on a
-particular movie's poster image to see a trailer from that movie.
+particular movie to see a trailer from that movie.
 
 ## Contents
 This project is made up of three files:
@@ -17,7 +17,8 @@ This project is made up of three files:
 
 ## Requirements
 The Python used in this project was version 2.7.13. If you're having issues
-running this code with another version, download this version [here](https://www.python.org/downloads/), and try it again.
+running this code with another version, download this version
+[here](https://www.python.org/downloads/), and try it again.
 
 ## Usage
 If you would like to make changes to the code or simply use the website, follow
@@ -27,8 +28,8 @@ these steps:
   change the `entertainment_center.py` file. If you simply want to see
   the site as-is, right-click on that same file and edit it with IDLE (this
     comes with Python).
-  3. Then either hit F5, or at the top of the window, click
+  3. Then either hit F5 or, at the top of the window, click
     'Run' and then click 'Run Module'.
 
 This will create an HTML file in the same directory as the `.py` files and will
- open the Fresh Tomatoes page in a browser.
+ open the JMDb page in a browser.

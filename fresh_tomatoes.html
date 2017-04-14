@@ -3,54 +3,88 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
-
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <style type="text/css" media="screen">
-        body {
-            padding-top: 80px;
-        }
-        #trailer .modal-dialog {
-            margin-top: 200px;
-            width: 640px;
-            height: 480px;
-        }
-        .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
-        }
-        #trailer-video {
-            width: 100%;
-            height: 100%;
-        }
-        .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
-        }
-        .movie-tile:hover {
-            background-color: #EEE;
-            cursor: pointer;
-        }
-        .scale-media {
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-        .scale-media iframe {
-            border: none;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: white;
-        }
+    <title>JMDb</title>
+    <!-- Boostrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <!-- Custom styles -->
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Anton');
+      #trailer .modal-dialog {
+        margin-top: 200px;
+        width: 800px;
+        height: 600px;
+      }
+      .hanging-close {
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        z-index: 9001;
+      }
+      #trailer-video {
+        width: 100%;
+        height: 100%;
+      }
+      .movie-tile {
+        margin-bottom: 20px;
+        padding-top: 20px;
+      }
+      .scale-media {
+        padding-bottom: 56.25%;
+        position: relative;
+      }
+      .scale-media iframe {
+        border: none;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: white;
+      }
+      .navbar-brand {
+        font-family: 'Anton', sans-serif;
+        font-size: 2em;
+        font-weight: bold;
+        background-color: #f4ee42;
+        width: 120px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px #555 inset;
+      }
+      .container {
+        width: 100%;
+        padding-top: 100px;
+      }
+      .card-deck {
+        display: flex;
+        justify-content: space-around;
+      }
+      .card {
+        box-shadow: 3px 3px 2px #aaa;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        max-width: 300px;
+        height: 662px;
+      }
+      .poster-img {
+        width: 300px;
+        height: 443px;
+      }
+      .modal-trigger {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 3px 3px 2px #aaa;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      .storyline {
+        color: #777;
+      }
     </style>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
@@ -59,7 +93,7 @@
             $("#trailer-video-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
+        $(document).on('click', '.modal-trigger', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
@@ -76,7 +110,7 @@
           });
         });
     </script>
-</head>
+  </head>
 
   <body>
     <!-- Trailer Video Modal -->
@@ -92,48 +126,80 @@
       </div>
     </div>
 
-    <!-- Main Page Content -->
+    <nav class="navbar navbar-light bg-faded">
+      <h1 class="navbar-brand mb-0 text-center">JMDb</h1>
+    </nav>
+
     <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
-          </div>
-        </div>
-      </div>
+      <div class="card-deck">
+        
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="http://www.impawards.com/2010/posters/red_ver7.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">RED</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="-JZ_moituIo" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">Retired secret agents being hunted down by the very government they served.</p>
     </div>
-    <div class="container">
-      
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="-JZ_moituIo" data-toggle="modal" data-target="#trailer">
-    <img src="http://www.impawards.com/2010/posters/red_ver7.jpg" width="220" height="342">
-    <h2>RED</h2>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="kM0ypzvuphg" data-toggle="modal" data-target="#trailer">
-    <img src="http://www.impawards.com/2010/posters/a_team_ver12_xlg.jpg" width="220" height="342">
-    <h2>A-Team</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="http://www.impawards.com/2010/posters/a_team_ver12_xlg.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">A-Team</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="kM0ypzvuphg" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">An elite team of soldiers protecting the world.</p>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="8hYlB38asDY" data-toggle="modal" data-target="#trailer">
-    <img src="https://www.movieposter.com/posters/archive/main/107/MPW-53945" width="220" height="342">
-    <h2>Iron Man</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="http://www.freemovieposters.net/posters/iron_man_2_2010_3219_poster.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">Iron Man</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="8hYlB38asDY" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">A genius, billionaire, playboy, philanthropist turns super hero after enduring a traumatic event.</p>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="J7nJksXDBWc" data-toggle="modal" data-target="#trailer">
-    <img src="http://www.impawards.com/2009/posters/sherlock_holmes_ver8_xlg.jpg" width="220" height="342">
-    <h2>Sherlock Holmes</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="http://www.impawards.com/2009/posters/sherlock_holmes_ver8_xlg.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">Sherlock Holmes</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="J7nJksXDBWc" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">A brilliant detective thwarts crimes in 19th-century England.</p>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5Eyw-Qiwpj0" data-toggle="modal" data-target="#trailer">
-    <img src="http://www.impawards.com/2003/posters/italian_job.jpg" width="220" height="342">
-    <h2>The Italian Job</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="http://www.impawards.com/2003/posters/italian_job.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">The Italian Job</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="5Eyw-Qiwpj0" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">A group of professional thieves plan a heist to get revenge on an old friend.</p>
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="eOrNdBpGMv8" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/I/61bINjWK62L.jpg" width="220" height="342">
-    <h2>The Avengers</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="https://images-na.ssl-images-amazon.com/images/I/61bINjWK62L.jpg" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">The Avengers</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="eOrNdBpGMv8" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">An elite group of super heroes takes on alien invaders.</p>
+    </div>
+  </div>
 </div>
 
+      </div>
     </div>
   </body>
 </html>
