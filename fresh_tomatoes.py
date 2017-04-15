@@ -9,54 +9,88 @@ main_page_head = '''
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
-
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <style type="text/css" media="screen">
-        body {
-            padding-top: 80px;
-        }
-        #trailer .modal-dialog {
-            margin-top: 200px;
-            width: 640px;
-            height: 480px;
-        }
-        .hanging-close {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            z-index: 9001;
-        }
-        #trailer-video {
-            width: 100%;
-            height: 100%;
-        }
-        .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
-        }
-        .movie-tile:hover {
-            background-color: #EEE;
-            cursor: pointer;
-        }
-        .scale-media {
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-        .scale-media iframe {
-            border: none;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-color: white;
-        }
+    <title>JMDb</title>
+    <!-- Boostrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <!-- Custom styles -->
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Anton');
+      #trailer .modal-dialog {
+        margin-top: 200px;
+        width: 800px;
+        height: 600px;
+      }
+      .hanging-close {
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        z-index: 9001;
+      }
+      #trailer-video {
+        width: 100%;
+        height: 100%;
+      }
+      .movie-tile {
+        margin-bottom: 20px;
+        padding-top: 20px;
+      }
+      .scale-media {
+        padding-bottom: 56.25%;
+        position: relative;
+      }
+      .scale-media iframe {
+        border: none;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: white;
+      }
+      .navbar-brand {
+        font-family: 'Anton', sans-serif;
+        font-size: 2em;
+        font-weight: bold;
+        background-color: #f4ee42;
+        width: 120px;
+        border-radius: 3px;
+        box-shadow: 0 0 10px #555 inset;
+      }
+      .container {
+        width: 100%;
+        padding-top: 100px;
+      }
+      .card-deck {
+        display: flex;
+        justify-content: space-around;
+      }
+      .card {
+        box-shadow: 3px 3px 2px #aaa;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        max-width: 300px;
+        height: 662px;
+      }
+      .poster-img {
+        width: 300px;
+        height: 443px;
+      }
+      .modal-trigger {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 3px 3px 2px #aaa;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      .storyline {
+        color: #777;
+      }
     </style>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
@@ -65,7 +99,7 @@ main_page_head = '''
             $("#trailer-video-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
+        $(document).on('click', '.modal-trigger', function (event) {
             var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
             var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
             $("#trailer-video-container").empty().append($("<iframe></iframe>", {
@@ -82,7 +116,7 @@ main_page_head = '''
           });
         });
     </script>
-</head>
+  </head>
 '''
 
 
@@ -102,18 +136,14 @@ main_page_content = '''
       </div>
     </div>
 
-    <!-- Main Page Content -->
+    <nav class="navbar navbar-light bg-faded">
+      <h1 class="navbar-brand mb-0 text-center">JMDb</h1>
+    </nav>
+
     <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
-          </div>
-        </div>
+      <div class="card-deck">
+        {movie_tiles}
       </div>
-    </div>
-    <div class="container">
-      {movie_tiles}
     </div>
   </body>
 </html>
@@ -122,9 +152,15 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+<div class="movie-tile">
+  <div class="card text-center">
+    <img src="{poster_image_url}" class="card-img-top poster-img">
+    <div class="card-block">
+      <h2 class="card-title">{movie_title}</h2>
+      <button type="button" class="btn btn-primary modal-trigger" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">Play Trailer</button>
+      <p class="card-text d-flex p-2 align-self-center">{storyline}</p>
+    </div>
+  </div>
 </div>
 '''
 
@@ -144,6 +180,7 @@ def create_movie_tiles_content(movies):
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
             movie_title=movie.title,
+            storyline=movie.storyline,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id
         )
