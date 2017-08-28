@@ -1,5 +1,6 @@
-# ud036_StarterCode
-Source code for a Movie Trailer website.
+# Movie Trailer Center
+Source code for a Movie Trailer website project for the Udacity Full Stack
+Web Developer Nanodegree.
 
 ## Summary
 This project was written by Jonathan Broderick in April 2017.
