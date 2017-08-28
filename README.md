@@ -1,4 +1,4 @@
-# Movie Trailer Center
+# JMDb
 Source code for a Movie Trailer website project for the Udacity Full Stack
 Web Developer Nanodegree.
 
